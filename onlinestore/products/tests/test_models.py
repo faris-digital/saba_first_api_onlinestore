@@ -22,6 +22,11 @@ class ManufacturerModelTests(TestCase):
         self.assertEqual(maker.location, "somewhere")
         self.assertEqual(maker.is_active, True)
 
+    def test_manufacturer_str_representation(self):
+        maker = Manufacturer.objects.get(name="maker 1")
+
+        self.assertEqual(str(maker), "maker 1 from somewhere")
+
 
 class ProductModelTests(TestCase):
     def setUp(self):
@@ -47,3 +52,8 @@ class ProductModelTests(TestCase):
         self.assertEqual(product.price, Decimal("10.99"))
         self.assertEqual(product.shipping_cost, Decimal("2.60"))
         self.assertEqual(product.quantity, 3)
+
+    def test_product_str_representation(self):
+        product = Product.objects.get(name="product")
+
+        self.assertEqual(str(product), "product by maker 1")

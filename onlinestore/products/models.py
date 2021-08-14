@@ -8,6 +8,9 @@ class Manufacturer(models.Model):
     location = models.CharField(max_length=50)
     is_active = models.BooleanField(default=True)
 
+    def __str__(self):
+        return f"{self.name} from {self.location}"
+
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -19,3 +22,6 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     shipping_cost = models.DecimalField(max_digits=8, decimal_places=2)
     quantity = models.SmallIntegerField()
+
+    def __str__(self):
+        return f"{self.name} by {self.manufacturer.name}"
